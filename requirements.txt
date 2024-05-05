@@ -1,0 +1,5 @@
+aiohttp~=3.9.5
+requests
+python-dotenv~=1.0.0
+responses
+
