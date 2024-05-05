@@ -2,7 +2,7 @@
 
 Pull Requests are Welcome!
 
-A python library of methods for accessing [alby](https://guides.getalby.com/developer-guide/v/alby-wallet-api/) API or your own install. For use when building  projects with alby. 
+A python library of methods for accessing [alby](https://guides.getalby.com/developer-guide/v/alby-wallet-api/) API. For use when building projects with alby. 
 
 
 
