@@ -2,7 +2,7 @@
 
 Pull Requests are Welcome!
 
-A python library of methods for accessing [alby](https://guides.getalby.com/developer-guide/v/alby-wallet-api/) API. For use when building projects with alby. 
+A python library of methods for accessing [alby](https://guides.getalby.com/developer-guide/v/alby-wallet-api/) API. For use when building python projects with alby. 
 
 
 
@@ -11,7 +11,7 @@ A python library of methods for accessing [alby](https://guides.getalby.com/deve
 
 ### With Virtual Env
 
-version at least python3.8
+version at least python3.10
 
 ```
 git clone https://github.com/f418me/pyalby.git
@@ -22,17 +22,13 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-Copy .env-example to .env and update the variables with your alby token:
+Copy .env-example to .env and update the variables with your Alby token:
 
 ```
 ALBY_ACCESS_TOKEN = XYZ
 ```
 
-Run tests in tests directory to see sample usage.
 
-NOTE: This is experimental software. 
-
-If you would like to contribute, please feel free to make a pull request. 
 
 
 ## Other
@@ -41,3 +37,7 @@ If you would like to contribute, please feel free to make a pull request.
 Run Examples
 
 See the `tests` directory for working examples
+
+NOTE: This is experimental software. 
+
+If you would like to contribute, please feel free to make a pull request. 

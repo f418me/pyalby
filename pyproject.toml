@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyalby"
+version = "0.0.1"
+dependencies = [
+    "requests == 2.31.0",
+    "python-dotenv == 1.0.1",
+    "responses==0.25.0"
+]
+requires-python = ">=3.10"
+authors = [
+  {name = "Felix Frei", email = "felix.frei@gmx.ch"}
+]
+maintainers = [
+  {name = "Felix Frei", email = "felix.frei@gmx.ch"}
+]
+description = "Alby API wrapper for Python"
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Repository = "https://github.com/f418me/pyalby.git"
+"Bug Tracker" = "https://github.com/f418me/pyalby/issues"
