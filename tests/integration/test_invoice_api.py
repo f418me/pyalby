@@ -11,9 +11,9 @@ def test_create_invoice_integration(invoice_client):
     assert "payment_hash" in result
 
 def test_get_incoming_invoices_integration(invoice_client):
-    result = invoice_client.get_incoming_invoices(items=5)
+    result = invoice_client.get_incoming_invoices()
     assert isinstance(result, list)
 
 def test_get_outgoing_invoices_integration(invoice_client):
-    result = invoice_client.get_outgoing_invoices(items=5)
+    result = invoice_client.get_outgoing_invoices()
     assert isinstance(result, list)

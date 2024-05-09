@@ -13,16 +13,21 @@ def test_bolt11_payment_integration(payments_client):
 
 def test_keysend_payment_integration(payments_client):
     # Replace with a valid destination public key
-    destination = "0234abcd..."
-    result = payments_client.keysend_payment(amount=1000, destination=destination)
+    destination = "024c60141110ba650d2e70598d8e8362f22ff7db0cfa1d3bbd710ab5e18fbef87e"
+    result = payments_client.keysend_payment(amount=50, destination=destination)
     assert "payment_hash" in result
 
 def test_multi_keysend_payment_integration(payments_client):
     keysends = [
         {
-            "amount": 100,
-            "destination": "0234abcd...",
-            "description": "Test multi keysend"
+            "amount": 21,
+            "destination": "024c60141110ba650d2e70598d8e8362f22ff7db0cfa1d3bbd710ab5e18fbef87e",
+            "description": "Test multi keysend - keysend 1"
+        },
+        {
+            "amount": 210,
+            "destination": "024c60141110ba650d2e70598d8e8362f22ff7db0cfa1d3bbd710ab5e18fbef87e",
+            "description": "Test multi keysend -keysend 2"
         }
     ]
     result = payments_client.multi_keysend_payment(keysends)

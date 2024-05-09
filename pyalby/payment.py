@@ -1,18 +1,33 @@
 import os
 import requests
+import logging
 from dotenv import load_dotenv
+from pyalby.utils import make_post_request
 
 # Load environment variables
 load_dotenv()
 
-
 class Payment:
+    """
+       A class to interact with the Alby API to do payments.
+       """
     def __init__(self):
-        self.base_url = os.getenv("BASE_URL", "https://api.getalby.com")
+        """
+        Initializes the Payment instance with base URL and access token from environment variables.
+        """
+        self.base_url = os.getenv("BASE_URL")
+        if not self.base_url:
+            logging.error("BASE_URL is not set in environment variables.")
+            raise ValueError("BASE_URL is required")
+
         self.access_token = os.getenv('ALBY_ACCESS_TOKEN')
+        if not self.access_token:
+            logging.error("ALBY_ACCESS_TOKEN is not set in environment variables.")
+            raise ValueError("ALBY_ACCESS_TOKEN is required")
+
         self.headers = {
             "Authorization": f"Bearer {self.access_token}",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
 
     def bolt11_payment(self, invoice):
@@ -26,10 +41,7 @@ class Payment:
         """
         url = f"{self.base_url}/payments/bolt11"
         data = {"invoice": invoice}
-
-        response = requests.post(url, json=data, headers=self.headers)
-        response.raise_for_status()
-        return response.json()
+        return make_post_request(url, data, self.headers)
 
     def keysend_payment(self, amount, destination, memo=None, custom_records=None):
         """Send a spontaneous payment (keysend).
@@ -53,9 +65,7 @@ class Payment:
         if custom_records:
             data["custom_records"] = custom_records
 
-        response = requests.post(url, json=data, headers=self.headers)
-        response.raise_for_status()
-        return response.json()
+        return make_post_request(url, data, self.headers)
 
     def multi_keysend_payment(self, keysends):
         """Make multiple keysend payments in a single request.

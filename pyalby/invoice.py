@@ -1,15 +1,31 @@
 import os
-import requests
+import logging
 from dotenv import load_dotenv
+
+from pyalby.utils import make_get_request, make_post_request
 
 # Load environment variables from the `.env` file
 load_dotenv()
 
 
 class Invoice:
+    """
+       A class to interact with the Alby API to create and get inovoices.
+       """
     def __init__(self):
+        """
+        Initializes the Invoice instance with base URL and access token from environment variables.
+        """
         self.base_url = os.getenv("BASE_URL")
+        if not self.base_url:
+            logging.error("BASE_URL is not set in environment variables.")
+            raise ValueError("BASE_URL is required")
+
         self.access_token = os.getenv('ALBY_ACCESS_TOKEN')
+        if not self.access_token:
+            logging.error("ALBY_ACCESS_TOKEN is not set in environment variables.")
+            raise ValueError("ALBY_ACCESS_TOKEN is required")
+
         self.headers = {
             "Authorization": f"Bearer {self.access_token}",
             "Content-Type": "application/json",
@@ -52,87 +68,26 @@ class Invoice:
             "payer_email": payer_email,
             "payer_pubkey": payer_pubkey
         }
+        return make_post_request(url, data, self.headers)
 
-        # Remove any optional arguments with None values
-        data = {k: v for k, v in data.items() if v is not None}
-
-        response = requests.post(url, json=data, headers=self.headers)
-        response.raise_for_status()
-        return response.json()
-
-    def get_incoming_invoices(
-            self,
-            created_at_gt=None,
-            created_at_lt=None,
-            since=None,
-            before=None,
-            page=1,
-            items=25,
-    ):
+    def get_incoming_invoices(self):
         """Get the list of incoming invoices with optional filters.
-
-        Args:
-            created_at_gt (int, optional): Invoices created after this Unix timestamp.
-            created_at_lt (int, optional): Invoices created before this Unix timestamp.
-            since (str, optional): Invoices created after the given identifier.
-            before (str, optional): Invoices created before the given identifier.
-            page (int, optional): Page number. Defaults to 1.
-            items (int, optional): Number of items per page. Defaults to 25.
 
         Returns:
             list: List of incoming invoices.
         """
         url = f"{self.base_url}/invoices/incoming"
-        params = {
-            "q[created_at_gt]": created_at_gt,
-            "q[created_at_lt]": created_at_lt,
-            "q[since]": since,
-            "q[before]": before,
-            "page": page,
-            "items": items,
-        }
-        params = {k: v for k, v in params.items() if v is not None}
+        return make_get_request(url, self.headers)
 
-        response = requests.get(url, params=params, headers=self.headers)
-        response.raise_for_status()
-        return response.json()
 
-    def get_outgoing_invoices(
-            self,
-            created_at_gt=None,
-            created_at_lt=None,
-            since=None,
-            before=None,
-            page=1,
-            items=25,
-    ):
+    def get_outgoing_invoices(self):
         """Get the list of outgoing invoices with optional filters.
-
-        Args:
-            created_at_gt (int, optional): Invoices created after this Unix timestamp.
-            created_at_lt (int, optional): Invoices created before this Unix timestamp.
-            since (str, optional): Invoices created after the given identifier.
-            before (str, optional): Invoices created before the given identifier.
-            page (int, optional): Page number. Defaults to 1.
-            items (int, optional): Number of items per page. Defaults to 25.
 
         Returns:
             list: List of outgoing invoices.
         """
         url = f"{self.base_url}/invoices/outgoing"
-        params = {
-            "q[created_at_gt]": created_at_gt,
-            "q[created_at_lt]": created_at_lt,
-            "q[since]": since,
-            "q[before]": before,
-            "page": page,
-            "items": items,
-        }
-        params = {k: v for k, v in params.items() if v is not None}
-
-        response = requests.get(url, params=params, headers=self.headers)
-        response.raise_for_status()
-        return response.json()
+        return make_get_request(url, self.headers)
 
     def get_specific_invoice(self, payment_hash):
         """Get details about a specific invoice.
@@ -144,10 +99,7 @@ class Invoice:
             dict: Details of the specified invoice.
         """
         url = f"{self.base_url}/invoices/{payment_hash}"
-
-        response = requests.get(url, headers=self.headers)
-        response.raise_for_status()
-        return response.json()
+        return make_get_request(url, self.headers)
 
     def decode_invoice(self, bolt11_invoice):
         """Decode a Bolt11 invoice.
@@ -159,8 +111,6 @@ class Invoice:
             dict: Decoded invoice information.
         """
         url = f"{self.base_url}/decode/bolt11/{bolt11_invoice}"
+        return make_get_request(url, self.headers)
 
-        response = requests.get(url, headers=self.headers)
-        response.raise_for_status()
-        return response.json()
 
