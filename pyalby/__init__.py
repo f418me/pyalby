@@ -8,8 +8,10 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
-# Package constants or configurations
-PACKAGE_CONSTANT = "Some important value"
-
 # Making classes easily importable
 from .account import Account
+from .invoice import Invoice
+from .payment import Payment
+
+# List of all available classes for `from pyalby import *`
+__all__ = ['Account', 'Invoice', 'Payment']

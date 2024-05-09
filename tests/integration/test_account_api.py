@@ -1,10 +1,5 @@
 import pytest
 from pyalby.account import Account
-import os
-from dotenv import load_dotenv
-
-# Load environment variables (contains BASE_URL and ALBY_API_TOKEN)
-load_dotenv()
 
 @pytest.fixture
 def alby_account():
@@ -24,7 +19,6 @@ def test_get_balance(alby_account):
     # Make a real API call to get balance data
     result = alby_account.get_balance()
 
-    # Ensure the response contains expected fields (replace with specific checks if needed)
     assert "balance" in result
     assert "currency" in result
     assert "unit" in result
@@ -33,7 +27,6 @@ def test_get_account_summary(alby_account):
     # Make a real API call to get account summary
     result = alby_account.get_account_summary()
 
-    # Check for expected fields
     assert "balance" in result
     assert "transactions_count" in result
     assert "boostagrams_count" in result
@@ -42,7 +35,6 @@ def test_get_personal_info(alby_account):
     # Make a real API call to get personal information
     result = alby_account.get_personal_info()
 
-    # Check for expected fields
     assert "identifier" in result
     assert "email" in result
     assert "name" in result

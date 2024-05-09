@@ -1,6 +1,8 @@
 import requests
 import os
+import logging
 from dotenv import load_dotenv
+
 
 load_dotenv()
 
@@ -17,6 +19,7 @@ class Account:
 
     def get_value4value(self):
         url = f"{self.base_url}/user/value4value"
+        logging.debug(f"Calling get_value4value API url: {url}")
         response = requests.get(url, headers=self.headers)
         response.raise_for_status()
         return response.json()

@@ -1,4 +1,3 @@
-# test_invoice_integration.py
 import pytest
 from pyalby.invoice import Invoice
 

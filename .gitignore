@@ -10,3 +10,6 @@
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/pyalby.iml
 /.idea/vcs.xml
+/dist/
+/pyalby.egg-info/
+/.pytest_cache/

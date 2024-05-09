@@ -7,7 +7,7 @@ def payments_client():
 
 def test_bolt11_payment_integration(payments_client):
     # Replace with a real invoice to test payment
-    invoice = "lnbc2100n1pnr0tjhpp5aac7asluk0rsfwsl8hvnq8h4cavhdz2hgyn20y8xdm26g0uv9e7sdqhf38xy6t5wvsxjmnkda5kxegcqzrrxqypr9qsp5nwwlf7rgysjtxh2xs47a5qqz702g4ljml4z9spu3zl8vt4drahvq9qyyssqj87nhz92gk7nlvmyt2pdwlvdxnwfcev5nu67ntsm473pq0vktjkzzjkxe2v689w50mphwfm2mtw2f7jrlhhw2vllp358je0lke67tmcql3xsvn"
+    invoice = "lnbc2100n1pnr0tjhpp5aa....."
     result = payments_client.bolt11_payment(invoice)
     assert "payment_hash" in result
 
