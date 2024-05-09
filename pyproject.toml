@@ -17,7 +17,7 @@ authors = [
 maintainers = [
   {name = "Felix Frei", email = "felix.frei@gmx.ch"}
 ]
-description = "Alby API wrapper for Python"
+description = "Python library for Alby Wallet API"
 readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = [

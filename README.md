@@ -1,6 +1,6 @@
 # pyalby
 
-A python library of methods for accessing [alby](https://guides.getalby.com/developer-guide/v/alby-wallet-api/) API. For use when building python projects with alby. 
+A python library of methods for accessing [Alby Wallet API](https://guides.getalby.com/developer-guide/v/alby-wallet-api/). 
 
 
 [![Contributors][contributors-shield]][contributors-url]
@@ -32,13 +32,13 @@ A python library of methods for accessing [alby](https://guides.getalby.com/deve
 <!-- 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 -->
-The python library pyalby contains all the methods for accessing [alby](https://guides.getalby.com/developer-guide/v/alby-wallet-api/) API. The main purpose of this library is to provide a simple way to interact with the alby API when using python.
-The purpose is to provide a simple way to interact with the alby API when using python. The library is designed to be simple to use and easy to understand. It is built on top of the requests library and provides a simple way to interact with the alby API.
+The python library pyalby contains methods for accessing [Alby](https://guides.getalby.com/developer-guide/v/alby-wallet-api/) API. The main purpose of this library is to provide a simple way to interact with the alby API when using python.
+The purpose is to provide a simple way to interact with the Alby API when using python. The library is designed to be simple to use and easy to understand. It is built on top of the requests library and provides a simple way to interact with the alby API.
 
 Note:
-Custodial Wallets are not recommended for the use of high-value transactions and storing large amounts.
-This library is for experimental purposes in the area of micro-payments. Use at your own risk.
-This library is not a replacement for the official alby API documentation. It is recommended to read the official documentation before using this library.
+Custodial Wallets are not recommended for the use of storing large amounts.
+This library is for experimental purposes in the area of micro-payments. Use it at your own risk.
+This library is not a replacement for the official Alby API documentation. It is recommended to read the official documentation before using this library.
 
 
 <!-- GETTING STARTED -->
@@ -70,6 +70,7 @@ Copy .env-example to .env and update the variables with your Alby token.
 Or just set the environment variable ALBY_ACCESS_TOKEN.
 
 ```
+BASE_URL = https://api.getalby.com
 ALBY_ACCESS_TOKEN = XYZ
 LOG_LEVEL = INFO
 ```
@@ -153,9 +154,7 @@ The projec pyalby is released under the terms of the MIT license. See [https://o
 <!-- CONTACT -->
 ## Contact
 
-f418.me - [f418_me](https://twitter.com/f418_me) - info@f418.me
-
-Project Link: [https://github.com/f418me/pyalby](https://github.com/f418me/pyalby)
+[f418.me](https://f418_me - [Twitter](https://twitter.com/f418_me) - info@f418.me
 
 
 
@@ -169,6 +168,6 @@ Project Link: [https://github.com/f418me/pyalby](https://github.com/f418me/pyalb
 [issues-shield]: https://img.shields.io/github/issues/f418me/pyalby.svg?style=for-the-badge
 [issues-url]: https://github.com/f418me/pyalby/issues
 [license-shield]: https://img.shields.io/github/license/f418me/pyalby.svg?style=for-the-badge
-[license-url]: https://github.com/f418me/pyalby/blob/master/LICENSE.txt
+[license-url]: https://github.com/f418me/pyalby/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [product-screenshot]: images/screenshot.png
