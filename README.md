@@ -116,11 +116,10 @@ if __name__ == "__main__":
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add Changelog
 - [ ] Add Webhook API
 - [ ] Add GitHub Docs pages
 - [ ] Add Support of async requests
-- [ ] CI/CD pipeline
+- [ ] CI pipeline
 - [ ] Add OAuth2 support
 - [ ] Add Python 3.12 support
 

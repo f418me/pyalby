@@ -9,8 +9,8 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 # Allow setting logging level from an environment variable or default to INFO
-log_level = os.getenv('LOG_LEVEL').upper()
-logger.setLevel(getattr(logging, log_level, logging.INFO))
+log_level = os.getenv('LOG_LEVEL', 'INFO')
+logger.setLevel(log_level)
 
 # Making classes easily importable
 from .account import Account
