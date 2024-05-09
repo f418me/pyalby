@@ -154,7 +154,7 @@ The projec pyalby is released under the terms of the MIT license. See [https://o
 <!-- CONTACT -->
 ## Contact
 
-[f418.me](https://f418_me - [Twitter](https://twitter.com/f418_me) - info@f418.me
+[f418.me](https://f418_me) - [Twitter](https://twitter.com/f418_me) - info@f418.me
 
 
 
