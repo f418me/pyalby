@@ -141,7 +141,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## Other
 
+Be aware that the integration tests send real keysend payments.
 
 <!-- LICENSE -->
 ## License
