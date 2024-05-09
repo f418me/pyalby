@@ -1,4 +1,5 @@
 import logging
+import os
 
 # Setting up logging for the package
 logger = logging.getLogger(__name__)
@@ -6,7 +7,10 @@ handler = logging.StreamHandler()
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
-logger.setLevel(logging.INFO)
+
+# Allow setting logging level from an environment variable or default to INFO
+log_level = os.getenv('LOG_LEVEL').upper()
+logger.setLevel(getattr(logging, log_level, logging.INFO))
 
 # Making classes easily importable
 from .account import Account
