@@ -32,8 +32,8 @@ A python library of methods for accessing [Alby Wallet API](https://guides.getal
 <!-- 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 -->
-The python library pyalby contains methods for accessing [Alby](https://guides.getalby.com/developer-guide/v/alby-wallet-api/) API. The main purpose of this library is to provide a simple way to interact with the alby API when using python.
-The purpose is to provide a simple way to interact with the Alby API when using python. The library is designed to be simple to use and easy to understand. It is built on top of the requests library and provides a simple way to interact with the alby API.
+The python library pyalby contains methods for accessing [Alby Wallet API](https://guides.getalby.com/developer-guide/v/alby-wallet-api/). 
+The main purpose of this library is to provide a simple way to interact with the Alby API when using python.
 
 Note:
 Custodial Wallets are not recommended for the use of storing large amounts.
