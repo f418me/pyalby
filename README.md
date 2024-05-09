@@ -33,6 +33,12 @@ A python library of methods for accessing [alby](https://guides.getalby.com/deve
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 -->
 The python library pyalby contains all the methods for accessing [alby](https://guides.getalby.com/developer-guide/v/alby-wallet-api/) API. The main purpose of this library is to provide a simple way to interact with the alby API when using python.
+The purpose is to provide a simple way to interact with the alby API when using python. The library is designed to be simple to use and easy to understand. It is built on top of the requests library and provides a simple way to interact with the alby API.
+
+Note:
+Custodial Wallets are not recommended for the use of high-value transactions and storing large amounts.
+This library is for experimental purposes in the area of micro-payments. Use at your own risk.
+This library is not a replacement for the official alby API documentation. It is recommended to read the official documentation before using this library.
 
 
 <!-- GETTING STARTED -->
@@ -65,6 +71,7 @@ Or just set the environment variable ALBY_ACCESS_TOKEN.
 
 ```
 ALBY_ACCESS_TOKEN = XYZ
+LOG_LEVEL = INFO
 ```
 
 
@@ -76,6 +83,9 @@ After the import of pyalby you can access the complete API using the related met
 from pyalby import Account, Invoice, Payment
 import logging
 import os
+
+# Load environment variables
+load_dotenv()
 
 def main():
     
@@ -107,8 +117,11 @@ if __name__ == "__main__":
 ## Roadmap
 
 - [ ] Add Changelog
+- [ ] Add Webhook API
 - [ ] Add GitHub Docs pages
-- [ ] Support of async requests  
+- [ ] Add Support of async requests
+- [ ] CI/CD pipeline
+- [ ] Add OAuth2 support
 - [ ] Add Python 3.12 support
 
 
