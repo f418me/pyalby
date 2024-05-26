@@ -2,7 +2,7 @@ import os
 import logging
 from dotenv import load_dotenv
 
-from pyalby.utils import make_get_request, make_post_request
+from pyalby.utils import make_get_request, make_post_request, make_async_post_request
 
 # Load environment variables from the `.env` file
 load_dotenv()
@@ -31,18 +31,23 @@ class Invoice:
             "Content-Type": "application/json",
         }
 
-    def create_invoice(
-            self,
-            amount,  # Required
-            description,  # Required
-            currency="btc",  # Optional
-            memo=None,  # Optional
-            comment=None,  # Optional
-            payer_name=None,  # Optional
-            payer_email=None,  # Optional
-            payer_pubkey=None,  # Optional
-    ):
-        """Create a new invoice for receiving lightning payments.
+    def _prepare_invoice_data(self, amount, description, currency="btc", memo=None, comment=None, payer_name=None,
+                              payer_email=None, payer_pubkey=None):
+        """Prepare the invoice data for both synchronous and asynchronous methods."""
+        return {
+            "amount": amount,
+            "description": description,
+            "currency": currency,
+            "memo": memo,
+            "comment": comment,
+            "payer_name": payer_name,
+            "payer_email": payer_email,
+            "payer_pubkey": payer_pubkey
+        }
+
+    def create_invoice(self, amount, description, currency="btc", memo=None, comment=None, payer_name=None,
+                       payer_email=None, payer_pubkey=None):
+        """Synchronous method to create a new invoice for receiving lightning payments.
 
         Args:
             amount (int): Required amount in satoshis.
@@ -58,17 +63,31 @@ class Invoice:
             dict: JSON response containing the invoice data.
         """
         url = f"{self.base_url}/invoices"
-        data = {
-            "amount": amount,
-            "description": description,
-            "currency": currency,
-            "memo": memo,
-            "comment": comment,
-            "payer_name": payer_name,
-            "payer_email": payer_email,
-            "payer_pubkey": payer_pubkey
-        }
+        data = self._prepare_invoice_data(amount, description, currency, memo, comment, payer_name, payer_email,
+                                          payer_pubkey)
         return make_post_request(url, data, self.headers)
+
+    async def async_create_invoice(self, amount, description, currency="btc", memo=None, comment=None, payer_name=None,
+                                   payer_email=None, payer_pubkey=None):
+        """Synchronous method to create a new invoice for receiving lightning payments.
+
+        Args:
+            amount (int): Required amount in satoshis.
+            description (str): Required description text (included in the BOLT11 invoice).
+            currency (str, optional): Currency of the invoice. Defaults to "btc".
+            memo (str, optional): Same as "description". Defaults to None.
+            comment (str, optional): Arbitrary text to save alongside the invoice. Defaults to None.
+            payer_name (str, optional): Name of the payer. Defaults to None.
+            payer_email (str, optional): Email of the payer. Defaults to None.
+            payer_pubkey (str, optional): Nostr or node pubkey of the payer. Defaults to None.
+
+        Returns:
+            dict: JSON response containing the invoice data.
+        """
+        url = f"{self.base_url}/invoices"
+        data = self._prepare_invoice_data(amount, description, currency, memo, comment, payer_name, payer_email,
+                                          payer_pubkey)
+        return await make_async_post_request(url, data, self.headers)
 
     def get_incoming_invoices(self):
         """Get the list of incoming invoices with optional filters.
@@ -112,5 +131,7 @@ class Invoice:
         """
         url = f"{self.base_url}/decode/bolt11/{bolt11_invoice}"
         return make_get_request(url, self.headers)
+
+
 
 
