@@ -3,29 +3,6 @@
 A python library of methods for accessing [Alby Wallet API](https://guides.getalby.com/developer-guide/v/alby-wallet-api/). 
 
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-
-
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#about-the-project">About The Project</a></li>
-    <li><a href="#getting-started">Getting Started</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -121,7 +98,6 @@ if __name__ == "__main__":
 - [ ] Add GitHub Docs pages
 - [ ] Add Support of async requests
 - [ ] CI pipeline
-- [ ] Add OAuth2 support
 - [ ] Add Python 3.12 support
 
 
@@ -154,20 +130,6 @@ The projec pyalby is released under the terms of the MIT license. See [https://o
 <!-- CONTACT -->
 ## Contact
 
-[f418.me](https://f418_me) - [Twitter](https://twitter.com/f418_me) - info@f418.me
+[f418.me](https://f418.me) - [info@f418.me](mailto:info@f418.me) - 
 
 
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/f418me/LNBitsVoucherGenerator?style=for-the-badge
-[contributors-url]: https://github.com/f418me/pyalby/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/f418me/pyalby.svg?style=for-the-badge
-[forks-url]: https://github.com/f418me/pyalby/network/members
-[issues-shield]: https://img.shields.io/github/issues/f418me/pyalby.svg?style=for-the-badge
-[issues-url]: https://github.com/f418me/pyalby/issues
-[license-shield]: https://img.shields.io/github/license/f418me/pyalby.svg?style=for-the-badge
-[license-url]: https://github.com/f418me/pyalby/blob/master/LICENSE
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[product-screenshot]: images/screenshot.png
