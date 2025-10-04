@@ -11,17 +11,23 @@ def make_get_request(url, headers):
         logging.debug(f"Response Body: {response.text}")
         return response.json()
     except requests.exceptions.HTTPError as http_err:
-        logging.error(f"HTTP error occurred: {http_err} - Response: {response.text}")
+        response_text = http_err.response.text if http_err.response is not None else ""
+        logging.error(
+            f"HTTP error occurred: {http_err} - Response: {response_text}"
+        )
+        raise
     except requests.exceptions.ConnectionError as conn_err:
         logging.error(f"Connection error occurred: {conn_err}")
+        raise
     except requests.exceptions.Timeout as timeout_err:
         logging.error(f"Timeout error occurred: {timeout_err}")
+        raise
     except requests.exceptions.RequestException as req_err:
         logging.error(f"An error occurred: {req_err}")
+        raise
     except Exception as err:
         logging.error(f"An unexpected error occurred: {err}")
-
-    return err
+        raise
 
 
 def make_post_request(url, data, headers):
@@ -36,14 +42,20 @@ def make_post_request(url, data, headers):
         logging.debug(f"Response Body: {response.text}")
         return response.json()
     except requests.exceptions.HTTPError as http_err:
-        logging.error(f"HTTP error occurred: {http_err} - Response: {response.text}")
+        response_text = http_err.response.text if http_err.response is not None else ""
+        logging.error(
+            f"HTTP error occurred: {http_err} - Response: {response_text}"
+        )
+        raise
     except requests.exceptions.ConnectionError as conn_err:
         logging.error(f"Connection error occurred: {conn_err}")
+        raise
     except requests.exceptions.Timeout as timeout_err:
         logging.error(f"Timeout error occurred: {timeout_err}")
+        raise
     except requests.exceptions.RequestException as req_err:
         logging.error(f"An error occurred: {req_err}")
+        raise
     except Exception as err:
         logging.error(f"An unexpected error occurred: {err}")
-
-    return err
+        raise
