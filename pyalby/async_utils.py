@@ -2,6 +2,34 @@ import aiohttp
 import logging
 
 
+def _mask_sensitive_headers(headers):
+    """Return a copy of headers with sensitive values like Authorization redacted."""
+    if not headers:
+        return headers
+
+    masked_headers = {}
+    for key, value in headers.items():
+        if key.lower() == "authorization":
+            masked_headers[key] = "***REDACTED***"
+        else:
+            masked_headers[key] = value
+    return masked_headers
+
+
+def _mask_sensitive_data(data):
+    """Return a copy of data with token-like fields redacted before logging."""
+    if not isinstance(data, dict):
+        return data
+
+    masked_data = {}
+    for key, value in data.items():
+        if any(sensitive in key.lower() for sensitive in ("token", "secret", "authorization")):
+            masked_data[key] = "***REDACTED***"
+        else:
+            masked_data[key] = value
+    return masked_data
+
+
 async def make_async_get_request(url, headers):
     """
     Make an asynchronous GET request to the specified URL.
@@ -39,15 +67,16 @@ async def make_async_get_request(url, headers):
         asyncio.run(example())
         ```
     """
-    logging.info(f"Calling GET API URL: {url} with headers: {headers}")
+    logging.info(
+        "Calling GET API URL: %s with headers: %s",
+        url,
+        _mask_sensitive_headers(headers),
+    )
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(url, headers=headers) as response:
                 response.raise_for_status()
-                logging.debug(f"Response Status Code: {response.status}")
-                logging.debug(f"Response Headers: {response.headers}")
-                response_text = await response.text()
-                logging.debug(f"Response Body: {response_text}")
+                logging.debug("Response Status Code: %s", response.status)
                 return await response.json()
     except aiohttp.ClientResponseError as http_err:
         # aiohttp.ClientResponseError doesn't have a response attribute like requests
@@ -109,17 +138,19 @@ async def make_async_post_request(url, data, headers):
         asyncio.run(example())
         ```
     """
-    logging.info(f"Calling POST API URL: {url} with headers: {headers} and data: {data}")
     try:
         # Remove any optional arguments with None values
         data = {k: v for k, v in data.items() if v is not None}
+        logging.info(
+            "Calling POST API URL: %s with headers: %s and data: %s",
+            url,
+            _mask_sensitive_headers(headers),
+            _mask_sensitive_data(data),
+        )
         async with aiohttp.ClientSession() as session:
             async with session.post(url, json=data, headers=headers) as response:
                 response.raise_for_status()
-                logging.debug(f"Response Status Code: {response.status}")
-                logging.debug(f"Response Headers: {response.headers}")
-                response_text = await response.text()
-                logging.debug(f"Response Body: {response_text}")
+                logging.debug("Response Status Code: %s", response.status)
                 return await response.json()
     except aiohttp.ClientResponseError as http_err:
         # aiohttp.ClientResponseError doesn't have a response attribute like requests

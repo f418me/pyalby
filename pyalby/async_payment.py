@@ -1,5 +1,4 @@
 import os
-import aiohttp
 import logging
 from dotenv import load_dotenv
 from pyalby.async_utils import make_async_post_request
@@ -170,28 +169,4 @@ class AsyncPayment:
         url = f"{self.base_url}/payments/keysend/multi"
         data = {"keysends": keysends}
 
-        logging.info(f"Calling POST API URL: {url} with headers: {self.headers} and data: {data}")
-        try:
-            async with aiohttp.ClientSession() as session:
-                async with session.post(url, json=data, headers=self.headers) as response:
-                    response.raise_for_status()
-                    logging.debug(f"Response Status Code: {response.status}")
-                    logging.debug(f"Response Headers: {response.headers}")
-                    response_text = await response.text()
-                    logging.debug(f"Response Body: {response_text}")
-                    return await response.json()
-        except aiohttp.ClientResponseError as http_err:
-            logging.error(f"HTTP error occurred: {http_err}")
-            raise
-        except aiohttp.ClientConnectionError as conn_err:
-            logging.error(f"Connection error occurred: {conn_err}")
-            raise
-        except aiohttp.ServerTimeoutError as timeout_err:
-            logging.error(f"Timeout error occurred: {timeout_err}")
-            raise
-        except aiohttp.ClientError as client_err:
-            logging.error(f"Client error occurred: {client_err}")
-            raise
-        except Exception as err:
-            logging.error(f"An unexpected error occurred: {err}")
-            raise
+        return await make_async_post_request(url, data, self.headers)
