@@ -1,16 +1,47 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "pyalby"
+version = "0.2.0"
+description = "Python library for Alby Wallet API"
+authors = ["Felix Frei <felix.frei@gmx.ch>"]
+maintainers = ["Felix Frei <felix.frei@gmx.ch>"]
+readme = "README.md"
+license = "LICENSE"
+repository = "https://github.com/f418me/pyalby.git"
+homepage = "https://github.com/f418me/pyalby"
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+requests = "^2.32.0"
+python-dotenv = "^1.0.1"
+aiohttp = "^3.9.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.0"
+responses = "^0.25.0"
+pytest-asyncio = "^0.23.0"
+aioresponses = "^0.7.0"
 
 [project]
 name = "pyalby"
-version = "0.0.1"
+version = "0.2.0"
 dependencies = [
-    "requests == 2.31.0",
-    "python-dotenv == 1.0.1",
-    "responses==0.25.0"
+    "requests>=2.32.0",
+    "python-dotenv>=1.0.1",
+    "aiohttp>=3.9.0"
 ]
-requires-python = ">=3.10,<3.12"
+requires-python = ">=3.10,<3.13"
 authors = [
   {name = "Felix Frei", email = "felix.frei@gmx.ch"}
 ]
@@ -22,9 +53,19 @@ readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = [
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
   "Operating System :: OS Independent",
 ]
 
 [project.urls]
 Repository = "https://github.com/f418me/pyalby.git"
 "Bug Tracker" = "https://github.com/f418me/pyalby/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "responses>=0.25.0",
+    "pytest-asyncio>=0.23.0",
+    "aioresponses>=0.7.0"
+]

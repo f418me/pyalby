@@ -2,14 +2,8 @@
 /tests/integration/.pytest_cache/
 /venv/
 /.env
-/.idea/.gitignore
+/.idea/
 /main_local.py
-/.idea/misc.xml
-/.idea/modules.xml
-/.idea/inspectionProfiles/profiles_settings.xml
-/.idea/inspectionProfiles/Project_Default.xml
-/.idea/pyalby.iml
-/.idea/vcs.xml
 /dist/
 /pyalby.egg-info/
 /.pytest_cache/

@@ -17,5 +17,10 @@ from .account import Account
 from .invoice import Invoice
 from .payment import Payment
 
+# Making async classes easily importable
+from .async_account import AsyncAccount
+from .async_invoice import AsyncInvoice
+from .async_payment import AsyncPayment
+
 # List of all available classes for `from pyalby import *`
-__all__ = ['Account', 'Invoice', 'Payment']
+__all__ = ['Account', 'Invoice', 'Payment', 'AsyncAccount', 'AsyncInvoice', 'AsyncPayment']

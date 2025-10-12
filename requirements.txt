@@ -1,5 +1,8 @@
-requests==2.31.0
-python-dotenv==1.0.1
-responses==0.25.0
-pytest==8.2.0
+requests>=2.32.0
+python-dotenv>=1.0.1
+aiohttp>=3.9.0
+responses>=0.25.0
+pytest>=8.3.0
+pytest-asyncio>=0.23.0
+aioresponses>=0.7.0
 
